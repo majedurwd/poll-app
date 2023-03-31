@@ -44,7 +44,7 @@ class App extends React.Component {
     // Delete Poll
     deletePoll = pollId => {
         const polls = this.state.polls.filter(poll => poll.id !== pollId)
-        this.setState({polls})
+        this.setState({polls, selectPoll: {}})
     }
 
     // Select Poll
@@ -53,12 +53,21 @@ class App extends React.Component {
         this.setState({selectedPoll: poll})
     }
 
+    handleSearch = searchTerm => {
+
+    }
+
     render() {
         return (
-            <Container>
+            <Container className='my-5'>
                 <Row>
                     <Col md={4}>
-                        < Sidebar />
+                        < Sidebar
+                            polls={this.state.polls}
+                            selectPoll={this.selectPoll}
+                            handleSearch={this.handleSearch}
+                            searchTerm={this.state.searchTerm}
+                        />
                     </Col>
                     <Col md={8}>
                         < MainContent />
